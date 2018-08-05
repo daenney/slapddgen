@@ -1,0 +1,11 @@
+dn: cn=schema
+objectClass: olcSchemaConfig
+cn: schema
+structuralObjectClass: olcSchemaConfig
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

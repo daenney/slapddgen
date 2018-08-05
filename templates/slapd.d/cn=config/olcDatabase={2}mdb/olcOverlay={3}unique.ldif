@@ -1,0 +1,15 @@
+dn: olcOverlay={3}unique
+objectClass: olcOverlayConfig
+objectClass: olcUniqueConfig
+olcOverlay: {3}unique
+{% for rule in rules -%}
+olcUniqueURI: {{rule}}
+{% endfor -%}
+structuralObjectClass: olcUniqueConfig
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

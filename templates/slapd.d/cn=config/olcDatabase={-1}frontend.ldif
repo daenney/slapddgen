@@ -1,0 +1,20 @@
+dn: olcDatabase={-1}frontend
+objectClass: olcDatabaseConfig
+objectClass: olcFrontendConfig
+olcDatabase: {-1}frontend
+olcAddContentAcl: FALSE
+olcLastMod: TRUE
+olcMaxDerefDepth: 0
+olcReadOnly: FALSE
+olcSchemaDN: cn=Subschema
+olcSyncUseSubentry: FALSE
+olcMonitoring: FALSE
+olcPasswordHash: {CRYPT}
+structuralObjectClass: olcDatabaseConfig
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

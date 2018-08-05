@@ -1,0 +1,15 @@
+dn: cn=module{0}
+objectClass: olcModuleList
+cn: module{0}
+olcModulePath: {{module_path}}
+{% for module in modules -%}
+olcModuleLoad: {{'{'}}{{loop.index0}}{{'}'}}{{module}}
+{% endfor -%}
+structuralObjectClass: olcModuleList
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

@@ -1,0 +1,12 @@
+dn: olcDatabase={1}monitor
+objectClass: olcDatabaseConfig
+olcDatabase: {1}monitor
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by dn.base="{{root_dn}},{{suffix}}" read
+structuralObjectClass: olcDatabaseConfig
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

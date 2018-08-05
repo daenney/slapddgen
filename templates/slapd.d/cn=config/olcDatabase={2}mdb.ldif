@@ -1,0 +1,29 @@
+dn: olcDatabase={2}mdb
+objectClass: olcDatabaseConfig
+objectClass: olcMdbConfig
+olcDatabase: {2}mdb
+olcSuffix: {{suffix}}
+olcRootDN: {{root_dn}},{{suffix}}
+olcRootPW: {{password}}
+{% for acl in acls -%}
+olcAccess: {{'{'}}{{loop.index0}}{{'}'}}{{acl}}
+{% endfor -%}
+olcMonitoring: TRUE
+olcDbDirectory: /var/lib/openldap/openldap-data
+olcDbNoSync: FALSE
+{% for index in indices -%}
+olcDbIndex: {{index}}
+{% endfor -%}
+olcDbMaxReaders: 0
+olcDbMaxSize: {{size}}
+olcDbMode: 0600
+olcDbSearchStack: 16
+olcDbRtxnSize: 10000
+structuralObjectClass: olcMdbConfig
+entryUUID: {{entry_uuid}}
+creatorsName: cn=config
+createTimestamp: {{time_short}}
+entryCSN: {{time_long}}#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: {{time_short}}
+

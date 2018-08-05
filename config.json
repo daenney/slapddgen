@@ -1,0 +1,50 @@
+{
+    "suffix": "dc=example,dc=com",
+    "baseOU": "ou=example",
+    "rootDN": "cn=Manager",
+    "rootPW": "seed",
+    "ldap": {
+        "saltFormat": "$6$rounds=50000$%.16s",
+        "argsFile": "/run/openldap/slapd.args",
+        "configFile": "/etc/openldap/slapd.conf",
+        "configDir": "/etc/openldap/slapd.d/",
+        "pidFile": "/run/openldap/slapd.pid",
+        "modulePath": "/usr/lib/openldap",
+        "modules": [
+            "back_mdb.so",
+            "back_monitor.so",
+            "accesslog.so",
+            "auditlog.so",
+            "constraint.so",
+            "dds.so",
+            "deref.so",
+            "dynlist.so",
+            "memberof.so",
+            "ppolicy.so",
+            "refint.so",
+            "unique.so"
+        ]
+    },
+    "mdb": {
+        "size": 536870912,
+        "acls": [
+            "to dn.subtree=\"{suffix}\" by group/organizationalRole/roleOccupant=\"cn=admin,{suffix}\" manage by * break",
+            "to attrs=userPassword by self write by group.exact=\"cn=readSecret,ou=groups,{base_ou},{suffix}\" read by anonymous auth",
+            "to attrs=sn,displayName,mail,givenName,initials,mobile,preferredLanguage,title,telephoneNumber by self write by users read",
+            "to dn.subtree=\"{suffix}\" by users read"
+        ],
+        "indices": [
+            "objectClass eq",
+            "uid eq,sub",
+            "uidNumber eq",
+            "gidNumber eq",
+            "member eq",
+            "memberOf eq"
+        ]
+    },
+    "unique" : [
+        "ldap:///ou=groups,{base_ou},{suffix}?gidNumber?sub",
+        "ldap:///ou=accounts,{base_ou},{suffix}?gidNumber?sub",
+        "ldap:///{base_ou},{suffix}?uidNumber?sub"
+    ]
+}
