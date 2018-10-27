@@ -6,6 +6,7 @@ olcRefintAttribute: owner
 olcRefintAttribute: manager
 olcRefintAttribute: memberOf
 olcRefintAttribute: member
+olcRefintAttribute: roleOccupant
 olcRefintModifiersName: {{root_dn}},{{suffix}}
 structuralObjectClass: olcRefintConfig
 entryUUID: {{entry_uuid}}
