@@ -1,1 +1,5 @@
 recursive-include templates *
+include Dockerfile
+include Pipfile
+include Pipfile.lock
+include LICENSE

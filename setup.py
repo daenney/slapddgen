@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/daenney/slapddgen',
-    version='0.1.0',
+    version='0.1.1',
     py_modules=['slapddgen'],
     include_package_data=True,
     install_requires=[
