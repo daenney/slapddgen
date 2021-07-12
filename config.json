@@ -8,6 +8,7 @@
         "argsFile": "/run/openldap/slapd.args",
         "configFile": "/etc/openldap/slapd.conf",
         "configDir": "/etc/openldap/slapd.d/",
+        "dbDir": "/var/lib/openldap/openldap-data",
         "pidFile": "/run/openldap/slapd.pid",
         "modulePath": "/usr/lib/openldap",
         "modules": [
