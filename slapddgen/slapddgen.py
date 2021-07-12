@@ -38,6 +38,12 @@ def cli():
 @click.option('--output_dir', type=click.Path())
 @click.option('--templates', type=click.Path())
 def generate(**kwargs):
+    click.echo("Filling up missing variables")
+    if not "baseOU" in kwargs:
+        kwargs["baseOU"] = None
+    else:
+        click.echo(kwargs["baseOU"])
+
     click.echo("Setting up environment")
 
     env = {}
@@ -120,9 +126,10 @@ def generate(**kwargs):
     ).dump(os.path.join(config_dir, 'olcDatabase={1}monitor.ldif'))
 
     template = env.get_template('slapd.d/cn=config/olcDatabase={2}mdb.ldif')
+
     acls = kwargs['mdb']['acls']
-    acls = [acl.format(suffix=kwargs['suffix'], base_ou=kwargs['baseOU'])
-            for acl in acls]
+    acls = [env.from_string(acl, kwargs).render() for acl in acls]
+
     passwd = kwargs['rootPW']
     if '{CRYPT}' not in passwd:
         passwd = crypt.crypt(kwargs['rootPW'],
@@ -174,8 +181,8 @@ def generate(**kwargs):
     template = env.get_template(
         'slapd.d/cn=config/olcDatabase={2}mdb/olcOverlay={3}unique.ldif')
     rules = kwargs['unique']
-    rules = [rule.format(suffix=kwargs['suffix'], base_ou=kwargs['baseOU'])
-             for rule in rules]
+    rules = [env.from_string(rule, kwargs).render() for rule in rules]
+
     template.stream(
         entry_uuid=uuid.uuid4(),
         time_short=cur_time.strftime(SHORT_TIME),

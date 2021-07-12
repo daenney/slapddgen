@@ -28,10 +28,10 @@
     "mdb": {
         "size": 536870912,
         "acls": [
-            "to dn.subtree=\"{suffix}\" by group/organizationalRole/roleOccupant=\"cn=admin,{suffix}\" manage by * break",
-            "to attrs=userPassword by self write by group.exact=\"cn=readSecret,ou=groups,{base_ou},{suffix}\" read by anonymous auth",
+            "to dn.subtree=\"{{suffix}}\" by group/organizationalRole/roleOccupant=\"cn=admin,{{suffix}}\" manage by * break",
+            "to attrs=userPassword by self write by group.exact=\"cn=readSecret,ou=groups,{% if baseOU is not none %}{{baseOU}},{% endif %}{{suffix}}\" read by anonymous auth",
             "to attrs=sn,displayName,mail,givenName,initials,mobile,preferredLanguage,title,telephoneNumber by self write by users read",
-            "to dn.subtree=\"{suffix}\" by users read"
+            "to dn.subtree=\"{{suffix}}\" by users read"
         ],
         "indices": [
             "objectClass eq",
@@ -42,9 +42,9 @@
             "memberOf eq"
         ]
     },
-    "unique" : [
-        "ldap:///ou=groups,{base_ou},{suffix}?gidNumber?sub",
-        "ldap:///ou=accounts,{base_ou},{suffix}?gidNumber?sub",
-        "ldap:///{base_ou},{suffix}?uidNumber?sub"
+    "unique": [
+        "ldap:///ou=groups,{% if baseOU is not none %}{{baseOU}},{% endif %}{{suffix}}?gidNumber?sub",
+        "ldap:///ou=accounts,{% if baseOU is not none %}{{baseOU}},{% endif %}{{suffix}}?gidNumber?sub",
+        "ldap:///{% if baseOU is not none %}{{baseOU}},{% endif %}{{suffix}}?uidNumber?sub"
     ]
 }
