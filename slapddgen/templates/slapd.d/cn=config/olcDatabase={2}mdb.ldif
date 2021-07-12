@@ -9,7 +9,7 @@ olcRootPW: {{password}}
 olcAccess: {{'{'}}{{loop.index0}}{{'}'}}{{acl}}
 {% endfor -%}
 olcMonitoring: TRUE
-olcDbDirectory: /var/lib/openldap/openldap-data
+olcDbDirectory: {{db_dir}}
 olcDbNoSync: FALSE
 {% for index in indices -%}
 olcDbIndex: {{index}}

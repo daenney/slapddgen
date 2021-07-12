@@ -81,6 +81,7 @@ def generate(**kwargs):
         config_dir=kwargs['ldap']['configDir'],
         args_file=kwargs['ldap']['argsFile'],
         pid_file=kwargs['ldap']['pidFile'],
+        db_dir=kwargs['ldap']['dbDir'],
     ).dump(os.path.join(base_dir, 'cn=config.ldif'))
 
     config_dir = os.path.join(base_dir, 'cn=config')
@@ -150,6 +151,7 @@ def generate(**kwargs):
         acls=acls,
         password=passwd,
         root_dn=kwargs['rootDN'],
+        db_dir=kwargs['ldap']['dbDir'],
     ).dump(os.path.join(config_dir, 'olcDatabase={2}mdb.ldif'))
 
     db_dir = os.path.join(config_dir, 'olcDatabase={2}mdb')
