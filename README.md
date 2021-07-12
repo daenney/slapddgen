@@ -42,6 +42,13 @@ ACLs, indices and unique empty arrays should be fine.
 Once you've installed slapddgen you can run it with a `slapddgen generate
 --config_file=/path/to/config.json --output_dir=/path/to/write/config/to`
 
+You can point the CLI to your own template directory by passing the
+`--templates` argument.
+
+You can override the `config.json` root password from the command line
+so you can fetch it from a secure source, like Vault doing something like
+`--root_pw=<(vault kv get -field=password kv/ldap/root-password)`
+
 ## Modifying the templates
 
 If you know what you're doing you can modify the templates in

@@ -37,12 +37,15 @@ def cli():
 @click.option('--config_file', type=click.Path())
 @click.option('--output_dir', type=click.Path())
 @click.option('--templates', type=click.Path())
+@click.option('--root_pw', type=click.STRING)
 def generate(**kwargs):
     click.echo("Filling up missing variables")
     if not "baseOU" in kwargs:
         kwargs["baseOU"] = None
-    else:
-        click.echo(kwargs["baseOU"])
+
+    if "root_pw" in kwargs and kwargs["root_pw"] is not None:
+        kwargs["rootPW"] = kwargs["root_pw"]
+        click.echo("Overriding the config.json rootPW")
 
     click.echo("Setting up environment")
 
