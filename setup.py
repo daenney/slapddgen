@@ -15,13 +15,14 @@ setup(
     version='0.1.1',
     py_modules=['slapddgen'],
     include_package_data=True,
+    package_data={"": ["slapddgen/*"]},
     install_requires=[
         'Click',
         'jinja2',
     ],
     entry_points='''
         [console_scripts]
-        slapddgen=slapddgen:cli
+        slapddgen=slapddgen.slapddgen:cli
     ''',
     classifiers=[
         'Development Status :: 3 - Alpha',
