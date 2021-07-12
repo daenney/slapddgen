@@ -36,11 +36,20 @@ def cli():
 @cli.command(cls=CommandWithConfigFile('config_file'))
 @click.option('--config_file', type=click.Path())
 @click.option('--output_dir', type=click.Path())
+@click.option('--templates', type=click.Path())
 def generate(**kwargs):
     click.echo("Setting up environment")
-    env = jinja2.Environment(
-        loader=jinja2.PackageLoader('slapddgen', 'templates')
-    )
+
+    env = {}
+    if kwargs["templates"] is None:
+        env = jinja2.Environment(
+            loader=jinja2.PackageLoader('slapddgen', 'templates')
+        )
+    else:
+        env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(
+                kwargs["templates"], followlinks=True)
+        )
 
     cur_time = datetime.datetime.now(datetime.timezone.utc)
     tmpdir = tempfile.TemporaryDirectory()
